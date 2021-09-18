@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.vaccine.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 
@@ -32,6 +33,12 @@ public class ChildDetails extends AppCompatActivity {
     SharePreferences sharePreferences;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child_details);
@@ -39,6 +46,7 @@ public class ChildDetails extends AppCompatActivity {
 
         buttonf = findViewById(R.id.floatingActionButton);
         add = findViewById(R.id.Add);
+
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,16 +61,9 @@ public class ChildDetails extends AppCompatActivity {
         String dob = SharePreferences.getDob(this);
         String gender = SharePreferences.getGender(this);
 
-        ArrayList<Childinfo> childArray = SharePreferences.getArrayList(getApplicationContext());
-        if(childArray.size() > 0){
-            details.clear();
-            details.addAll(childArray);
-        }
-
-
         recyclerView =(RecyclerView) findViewById(R.id.list);
 
-        childinfoAdapter =new ChildinfoAdapter(getApplicationContext(), details);
+        childinfoAdapter =new ChildinfoAdapter(ChildDetails.this, details);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
 
@@ -76,19 +77,28 @@ public class ChildDetails extends AppCompatActivity {
 
         recyclerView.setAdapter(childinfoAdapter);
 
-        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                Intent scheduleIntent = new Intent(ChildDetails.this,ScheduleActivity.class);
-                startActivity(scheduleIntent);
+//        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
+//            @Override
+//            public void onClick(View view, int position) {
+//                Intent scheduleIntent = new Intent(ChildDetails.this,ScheduleActivity.class);
+//                startActivity(scheduleIntent);
+//
+//            }
+//
+//            @Override
+//            public void onLongClick(View view, int position) {
+//
+//            }
+//        }));
 
-            }
+        try{
+            ArrayList<Childinfo> a = SharePreferences.getArrayList(getApplicationContext());
+            details.addAll(a);
+            childinfoAdapter.notifyDataSetChanged();
 
-            @Override
-            public void onLongClick(View view, int position) {
+        } catch (Exception e){
 
-            }
-        }));
+        }
 
         //prepareChildData();
 
@@ -102,6 +112,7 @@ public class ChildDetails extends AppCompatActivity {
         if (requestCode == 0 && resultCode == Activity.RESULT_OK){
             Childinfo info = data.getParcelableExtra("data");
             details.add(info);
+
             SharePreferences.setArrayList(getApplicationContext(), details);
             recyclerView.getAdapter().notifyDataSetChanged();
         }

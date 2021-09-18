@@ -1,302 +1,296 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp"
-    tools:context=".ScheduleActivity"
-    android:orientation="vertical"
     android:background="@color/white"
-    >
+    android:orientation="vertical"
+    android:padding="5dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Vaccination Table"
-        android:layout_gravity="center"
-        android:textStyle="bold"
-        android:textSize="30sp"
-        android:textColor="@color/blue"
-        />
-
-    <View
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="20dp"/>
+        android:layout_height="match_parent">
 
-    <TableLayout
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:stretchColumns="1"
-        android:background="@drawable/borderbox_bg">
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="200dp"
-                android:layout_column="1"
-                android:padding="3dip"
-                android:text="Vaccine"
-                android:textColor="@color/blue"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="100dp"
-                android:text="Remarks"
-                android:textColor="@color/blue"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-        </TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Vaccination Table"
+            android:textColor="@color/blue"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <View
-            android:layout_height="2dip"
-            android:background="@color/blue" />
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
 
-        <TableRow
-            android:gravity="center">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/borderbox_bg"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:stretchColumns="1">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_column="1"
-                android:paddingLeft="5dp"
-                android:text="BCG Vaccine - At Birth"
-                android:textColor="@color/black"
-                android:textSize="18dp" />
+            <TableRow>
 
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Done"
-                android:textSize="18dp"
-                android:textColor="@color/black"/>
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Vaccine"
+                    android:textColor="@color/blue"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-            <ImageButton
-                android:id="@+id/reminder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                app:srcCompat="@android:drawable/ic_menu_today" />
+                <TextView
+                    android:layout_width="100dp"
+                    android:text="Remarks"
+                    android:textColor="@color/blue"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-        </TableRow>
+            </TableRow>
 
-        <View
-            android:layout_height="2dip"
-            android:background="#FF909090" />
+            <View
+                android:layout_height="2dip"
+                android:background="@color/blue" />
+
+            <TableRow android:gravity="center">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_column="1"
+                    android:paddingLeft="5dp"
+                    android:text="BCG Vaccine - At Birth"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Done"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
+                <ImageButton
+                    android:id="@+id/reminder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    app:srcCompat="@android:drawable/ic_menu_today" />
+
+            </TableRow>
+
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090" />
 
 
-        <TableRow
-            android:gravity="center">
+            <TableRow android:gravity="center">
 
-            <TextView
-                android:layout_column="1"
-                android:layout_width="100dp"
-                android:padding="7dip"
-                android:text="DPT-HepB-HiB - (6,10,14 weeks)"
-                android:singleLine="false"
-                android:textSize="18dp"
-                android:textColor="@color/black"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_column="1"
+                    android:padding="7dip"
+                    android:singleLine="false"
+                    android:text="DPT-HepB-HiB - (6,10,14 weeks)"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
 
-            <CheckBox
-                android:id="@+id/checkBox2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Done"
-                android:textColor="@color/black"
-                android:textSize="18dp" />
+                <CheckBox
+                    android:id="@+id/checkBox2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Done"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
 
-            <ImageButton
-                android:id="@+id/reminder2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                app:srcCompat="@android:drawable/ic_menu_today" />
+                <ImageButton
+                    android:id="@+id/reminder2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    app:srcCompat="@android:drawable/ic_menu_today" />
 
-        </TableRow>
+            </TableRow>
 
-        <View
-            android:layout_height="2dip"
-            android:background="#FF909090" />
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090" />
 
-        <TableRow
-            android:gravity="center">
+            <TableRow android:gravity="center">
 
-            <TextView
-                android:layout_column="1"
-                android:layout_width="100dp"
-                android:text="Oral Polio Vaccine (OPV) - (6,10,14 weeks)"
-                android:padding="8dip"
-                android:singleLine="false"
-                android:textSize="18dp"
-                android:textColor="@color/black"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_column="1"
+                    android:padding="8dip"
+                    android:singleLine="false"
+                    android:text="Oral Polio Vaccine (OPV) - (6,10,14 weeks)"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
 
-            <CheckBox
-                android:id="@+id/checkBox3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Done"
-                android:textSize="18dp"
-                android:textColor="@color/black"/>
+                <CheckBox
+                    android:id="@+id/checkBox3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Done"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
 
-            <ImageButton
-                android:id="@+id/reminder3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                app:srcCompat="@android:drawable/ic_menu_today" />
+                <ImageButton
+                    android:id="@+id/reminder3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    app:srcCompat="@android:drawable/ic_menu_today" />
 
-        </TableRow>
+            </TableRow>
 
-        <View
-            android:layout_height="2dip"
-            android:background="#FF909090" />
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090" />
 
-        <TableRow
-            android:gravity="center">
+            <TableRow android:gravity="center">
 
-            <TextView
-                android:layout_column="1"
-                android:layout_width="50dp"
-                android:singleLine="false"
-                android:padding="10dip"
-                android:text="Pneumococcal Conjugate Vaccine (PCV) - (6 and 10 weeks and 9 months)"
-                android:textSize="17dp"
-                android:textColor="@color/black"/>
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_column="1"
+                    android:padding="10dip"
+                    android:singleLine="false"
+                    android:text="Pneumococcal Conjugate Vaccine (PCV) - (6 and 10 weeks and 9 months)"
+                    android:textColor="@color/black"
+                    android:textSize="17dp" />
 
-            <CheckBox
-                android:id="@+id/checkBox4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Done"
-                android:textSize="18dp"
-                android:textColor="@color/black"/>
+                <CheckBox
+                    android:id="@+id/checkBox4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Done"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
 
-            <ImageButton
-                android:id="@+id/reminder4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                app:srcCompat="@android:drawable/ic_menu_today" />
+                <ImageButton
+                    android:id="@+id/reminder4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    app:srcCompat="@android:drawable/ic_menu_today" />
 
-        </TableRow>
+            </TableRow>
 
-        <View
-            android:layout_height="2dip"
-            android:background="#FF909090" />
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090" />
 
-        <TableRow
-            android:gravity="center">
+            <TableRow android:gravity="center">
 
-            <TextView
-                android:layout_column="1"
-                android:layout_width="100dp"
-                android:padding="9dip"
-                android:text="Inactivated polio vaccine (IPV) - (14 weeks)"
-                android:textSize="18dp"
-                android:textColor="@color/black"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_column="1"
+                    android:padding="9dip"
+                    android:text="Inactivated polio vaccine (IPV) - (14 weeks)"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
 
-            <CheckBox
-                android:id="@+id/checkBox5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Done"
-                android:textSize="18dp"
-                android:textColor="@color/black"/>
+                <CheckBox
+                    android:id="@+id/checkBox5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Done"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
 
-            <ImageButton
-                android:id="@+id/reminder5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                app:srcCompat="@android:drawable/ic_menu_today" />
+                <ImageButton
+                    android:id="@+id/reminder5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    app:srcCompat="@android:drawable/ic_menu_today" />
 
-        </TableRow>
+            </TableRow>
 
-        <View
-            android:layout_height="2dip"
-            android:background="#FF909090" />
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090" />
 
-        <TableRow
-            android:gravity="center">
+            <TableRow android:gravity="center">
 
-            <TextView
-                android:layout_column="1"
-                android:layout_width="50dp"
-                android:padding="8dip"
-                android:text="Measles-Rubella(MR) - (9 and 15 months)"
-                android:textSize="18dp"
-                android:textColor="@color/black"/>
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_column="1"
+                    android:padding="8dip"
+                    android:text="Measles-Rubella(MR) - (9 and 15 months)"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
 
-            <CheckBox
-                android:id="@+id/checkBox6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Done"
-                android:textSize="18dp"
-                android:textColor="@color/black"/>
+                <CheckBox
+                    android:id="@+id/checkBox6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Done"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
 
-            <ImageButton
-                android:id="@+id/reminder6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                app:srcCompat="@android:drawable/ic_menu_today" />
+                <ImageButton
+                    android:id="@+id/reminder6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    app:srcCompat="@android:drawable/ic_menu_today" />
 
-        </TableRow>
+            </TableRow>
 
-        <View
-            android:layout_height="2dip"
-            android:background="#FF909090" />
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090" />
 
-        <TableRow
-            android:gravity="center">
+            <TableRow android:gravity="center">
 
-            <TextView
-                android:layout_column="1"
-                android:layout_width="50dp"
-                android:padding="8dip"
-                android:text="Japanese Encephalitis (JE) - (12 months)"
-                android:textSize="18dp"
-                android:textColor="@color/black"/>
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_column="1"
+                    android:padding="8dip"
+                    android:text="Japanese Encephalitis (JE) - (12 months)"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
 
-            <CheckBox
-                android:id="@+id/checkBox7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Done"
-                android:textSize="18dp"
-                android:textColor="@color/black"/>
+                <CheckBox
+                    android:id="@+id/checkBox7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Done"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
 
-            <ImageButton
-                android:id="@+id/reminder7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                app:srcCompat="@android:drawable/ic_menu_today" />
+                <ImageButton
+                    android:id="@+id/reminder7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    app:srcCompat="@android:drawable/ic_menu_today" />
 
-        </TableRow>
+            </TableRow>
 
-        <View
-            android:layout_height="2dip"
-            android:background="@color/blue" />
+            <View
+                android:layout_height="2dip"
+                android:background="@color/blue" />
 
-    </TableLayout>
+        </TableLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="100dp"/>
 
-    <Button
-        android:id="@+id/viewSchedule"
-        android:layout_gravity="center"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:text="view Reminders" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/viewSchedule"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:text="view Reminders" />
+    </LinearLayout>
+</ScrollView>

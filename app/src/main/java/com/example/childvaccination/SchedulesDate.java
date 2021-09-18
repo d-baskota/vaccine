@@ -16,6 +16,8 @@ import java.util.ArrayList;
 
 import static com.example.childvaccination.SharePreferences.sharePrefs;
 
+import com.example.vaccine.R;
+
 public class SchedulesDate extends AppCompatActivity {
 
     private ArrayList<scheduleinfo> scheduledetails = new ArrayList<>();
@@ -45,13 +47,21 @@ public class SchedulesDate extends AppCompatActivity {
 
         recyclerView.setAdapter(schedularAdapter);
 
-        scheduleinfo sinfo = new scheduleinfo(date, time, hospital, question);
+//        scheduleinfo sinfo = new scheduleinfo(date, time, hospital, question);
 
-        scheduledetails.add(sinfo);
-        recyclerView.getAdapter().notifyDataSetChanged();
+//        scheduledetails.add(sinfo);
+//        recyclerView.getAdapter().notifyDataSetChanged();
 
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
+        try{
+            ArrayList<scheduleinfo> a = SharePreferences.getReminderArrayList(getApplicationContext());
+            scheduledetails.addAll(a);
+            schedularAdapter.notifyDataSetChanged();
+
+        } catch (Exception e){
+
+        }
         //prepareSchedulelists();
 
     }
@@ -63,10 +73,10 @@ public class SchedulesDate extends AppCompatActivity {
         //   Log.i(TAG, "onActivityResult: "+requestCode +"  "+resultCode);
 
         if (requestCode == 0 && resultCode == Activity.RESULT_OK) {
-
             scheduleinfo sinfo = data.getParcelableExtra("sdata");
             sinfo.setRemindertime(SharePreferences.getDate(this));
             scheduledetails.add(sinfo);
+            SharePreferences.setReminderArrayList(getApplicationContext(), scheduledetails);
             recyclerView.getAdapter().notifyDataSetChanged();
         }
     }

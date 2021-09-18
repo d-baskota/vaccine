@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
-        button2 = findViewById(R.id.button2);
+        button2 = findViewById(R.id.scheduler_button);
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button1 = findViewById(R.id.button1);
+        button1 = findViewById(R.id.information_button);
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override

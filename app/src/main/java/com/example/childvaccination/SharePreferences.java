@@ -6,6 +6,11 @@ import android.content.SharedPreferences;
 //import com.google.gson.Gson;
 //import com.google.gson.reflect.TypeToken;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
@@ -25,26 +30,42 @@ public class SharePreferences {
 
     public static void setArrayList(Context context, ArrayList<Childinfo> detail){
         SharedPreferences.Editor editor = sharePrefs(context).edit();
-  //      Gson gson = new Gson();
-  //      String json = gson.toJson(detail);
-  //      editor.putString("ARRAYLIST", json);
-  //      editor.apply();
+        Gson gson = new Gson();
+        String json = gson.toJson(detail);
+        editor.putString("ARRAYLIST", json);
+        editor.apply();
     }
 
- //   public static ArrayList<Childinfo> getArrayList(Context context){
-   //     SharedPreferences prefs = sharePrefs(context);
-   //     Gson gson = new Gson();
-   //     String json = prefs.getString("ARRAYLIST", null);
-   //     Type type = new TypeToken<ArrayList<Childinfo>>() {}.getType();
-   //     return gson.fromJson(json, type);
-   // }
+    public static void setReminderArrayList(Context context, ArrayList<scheduleinfo> detail){
+        SharedPreferences.Editor editor = sharePrefs(context).edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(detail);
+        editor.putString("REMINDERARRAYLIST", json);
+        editor.apply();
+    }
 
-  //  public static ArrayList<Childinfo> removeArrayList(Context context, int position){
-  //      ArrayList<Childinfo> arrayList =  getArrayList(context);
-  //      arrayList.remove(position);
- //       setArrayList(context, arrayList);
- //       return getArrayList(context);
- //   }
+    public static ArrayList<Childinfo> getArrayList(Context context){
+        SharedPreferences prefs = sharePrefs(context);
+        Gson gson = new Gson();
+        String json = prefs.getString("ARRAYLIST", null);
+        Type type = new TypeToken<ArrayList<Childinfo>>() {}.getType();
+        return gson.fromJson(json, type);
+    }
+
+    public static ArrayList<scheduleinfo> getReminderArrayList(Context context){
+        SharedPreferences prefs = sharePrefs(context);
+        Gson gson = new Gson();
+        String json = prefs.getString("REMINDERARRAYLIST", null);
+        Type type = new TypeToken<ArrayList<scheduleinfo    >>() {}.getType();
+        return gson.fromJson(json, type);
+    }
+
+    public static ArrayList<Childinfo> removeArrayList(Context context, int position){
+        ArrayList<Childinfo> arrayList =  getArrayList(context);
+        arrayList.remove(position);
+        setArrayList(context, arrayList);
+        return getArrayList(context);
+    }
 
         public static String getName(Context context){
             SharedPreferences prefs = sharePrefs(context);

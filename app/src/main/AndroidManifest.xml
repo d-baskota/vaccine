@@ -16,6 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name="com.example.childvaccination.ChildDetails" android:screenOrientation="portrait"/>
+        <activity android:name="com.example.childvaccination.ChildinfoActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.example.childvaccination.InformationActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.example.childvaccination.ScheduleActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.example.childvaccination.ReminderForm" android:screenOrientation="portrait"/>
+        <activity android:name="com.example.childvaccination.InformationDetailsActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.example.childvaccination.SchedulesDate" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

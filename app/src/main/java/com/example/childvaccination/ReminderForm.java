@@ -19,7 +19,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.example.vaccine.R;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -107,20 +110,32 @@ public class ReminderForm extends AppCompatActivity {
         setreminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ArrayList<scheduleinfo> reminderList = new ArrayList<scheduleinfo>();
+                try {
+                    reminderList = SharePreferences.getReminderArrayList(ReminderForm.this);
+                    if(reminderList == null){
+                        reminderList = new ArrayList<scheduleinfo>();
+                    }
+                } catch (Exception e){
+                    reminderList = new ArrayList<scheduleinfo>();
+                }
 
                 //remView.setText("\n Date :\t" + remdate.getText().toString() + "\nTime :\t " + remtime.getText().toString() + "\n Hospital :\t " + hospitalname.getText().toString() + "\n Question for Doctor :\t " + question.getText().toString());
-                SharePreferences.setUserdata(getApplicationContext(),remdate.getText().toString(),remtime.getText().toString(),hospitalname.getText().toString(),question.getText().toString());
+                SharePreferences.setUserdata(getApplicationContext(), remdate.getText().toString(), remtime.getText().toString(), hospitalname.getText().toString(), question.getText().toString());
 
-                scheduleinfo sinfo = new scheduleinfo(remdate.getText().toString(),remtime.getText().toString(),hospitalname.getText().toString(),question.getText().toString());
+                scheduleinfo sinfo = new scheduleinfo(remdate.getText().toString(), remtime.getText().toString(), hospitalname.getText().toString(), question.getText().toString());
+                reminderList.add(sinfo);
                 Intent intent = new Intent();
-                intent.putExtra("sdata",sinfo);
-                setResult(Activity.RESULT_OK,intent);
+                intent.putExtra("sdata", sinfo);
+                SharePreferences.setReminderArrayList(ReminderForm.this, reminderList);
+                setResult(Activity.RESULT_OK, intent);
                 finish();
 
 
             }
         });
     }
+
     private static final String TAG = "ReminderForm";
 
 }

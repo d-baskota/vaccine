@@ -10,10 +10,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.example.vaccine.R;
+
 public class ScheduleActivity extends AppCompatActivity {
 
     private Button schedule;
     private ImageButton rem, rem2, rem3, rem4, rem5, rem6, rem7;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,11 +34,11 @@ public class ScheduleActivity extends AppCompatActivity {
 
         schedule.setOnClickListener(new View.OnClickListener() {
             @Override
-                 public void onClick(View v) {
-                Intent scheduleIntent = new Intent(ScheduleActivity.this,SchedulesDate.class);
+            public void onClick(View v) {
+                Intent scheduleIntent = new Intent(ScheduleActivity.this, SchedulesDate.class);
                 startActivity(scheduleIntent);
-                             }
-                       }
+            }
+        }
         );
 
         rem.setOnClickListener(formClicked);
@@ -52,12 +55,12 @@ public class ScheduleActivity extends AppCompatActivity {
 
         rem7.setOnClickListener(formClicked);
     }
-    
+
     private View.OnClickListener formClicked = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent scheduleIntent = new Intent(ScheduleActivity.this,ReminderForm.class);
-            startActivityForResult(scheduleIntent,0);
+            Intent scheduleIntent = new Intent(ScheduleActivity.this, ReminderForm.class);
+            startActivityForResult(scheduleIntent, 0);
         }
     };
 
@@ -66,7 +69,7 @@ public class ScheduleActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 0 && resultCode == Activity.RESULT_OK) {
             scheduleinfo sinfo = data.getParcelableExtra("sdata");
-           // scheduledetails.add(sinfo);
+            // scheduledetails.add(sinfo);
             //recyclerView.getAdapter().notifyDataSetChanged();
         }
     }
