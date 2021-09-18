@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.vaccine">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,6 +26,8 @@
         <activity android:name="com.example.childvaccination.ReminderForm" android:screenOrientation="portrait"/>
         <activity android:name="com.example.childvaccination.InformationDetailsActivity" android:screenOrientation="portrait"/>
         <activity android:name="com.example.childvaccination.SchedulesDate" android:screenOrientation="portrait"/>
+
+        <receiver android:name="com.example.childvaccination.AlarmBroadCastReciever" />
     </application>
 
 </manifest>

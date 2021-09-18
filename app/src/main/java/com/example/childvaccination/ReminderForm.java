@@ -3,7 +3,9 @@ package com.example.childvaccination;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -21,10 +23,12 @@ import android.widget.TimePicker;
 
 import com.example.vaccine.R;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class ReminderForm extends AppCompatActivity {
     private Button setreminder;
@@ -120,6 +124,8 @@ public class ReminderForm extends AppCompatActivity {
                     reminderList = new ArrayList<scheduleinfo>();
                 }
 
+                setTimer(hospitalname.getText().toString());
+
                 //remView.setText("\n Date :\t" + remdate.getText().toString() + "\nTime :\t " + remtime.getText().toString() + "\n Hospital :\t " + hospitalname.getText().toString() + "\n Question for Doctor :\t " + question.getText().toString());
                 SharePreferences.setUserdata(getApplicationContext(), remdate.getText().toString(), remtime.getText().toString(), hospitalname.getText().toString(), question.getText().toString());
 
@@ -134,6 +140,25 @@ public class ReminderForm extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void setTimer(String hospitalName) {
+        String time = remdate.getText().toString() + " " + remtime.getText().toString();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        Date date = null;
+        try {
+            date = sdf.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long millis = date.getTime();
+
+        Intent alarmIntent = new Intent(ReminderForm.this, AlarmBroadCastReciever.class);
+        alarmIntent.putExtra("BODY", hospitalName);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                ReminderForm.this, Integer.parseInt(100 + remtime.getText().toString().split(":")[1]), alarmIntent, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, millis, pendingIntent);
     }
 
     private static final String TAG = "ReminderForm";

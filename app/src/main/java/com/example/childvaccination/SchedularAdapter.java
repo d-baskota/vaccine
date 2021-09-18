@@ -1,7 +1,10 @@
 package com.example.childvaccination;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +19,10 @@ import com.example.vaccine.R;
 
 import org.w3c.dom.Text;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -68,11 +74,31 @@ public class SchedularAdapter extends RecyclerView.Adapter<SchedularAdapter.MyVi
                 if(scheduleList == null){
                     scheduleList = new ArrayList<>();
                 }
+                cancelAlarm(holder.reminderdate.getText().toString(), holder.remindertime.getText().toString(), holder.reminderhospital.getText().toString());
                 scheduledetails.clear();
                 scheduledetails.addAll(scheduleList);
                 notifyDataSetChanged();
             }
         });
+    }
+
+    private void cancelAlarm(String remDate, String remTime, String hospitalName) {
+        String time = remDate + " " + remTime;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        Date date = null;
+        try {
+            date = sdf.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long millis = date.getTime();
+
+        Intent alarmIntent = new Intent(context, AlarmBroadCastReciever.class);
+        alarmIntent.putExtra("BODY", hospitalName);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                context, Integer.parseInt(100 + remTime.split(":")[1]), alarmIntent, 0);
+        @SuppressLint("WrongConstant") AlarmManager alarmManager = (AlarmManager) context.getSystemService("alarm");
+        alarmManager.cancel(pendingIntent);
     }
 
     @Override
