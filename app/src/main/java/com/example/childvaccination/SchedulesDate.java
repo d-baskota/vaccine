@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,8 @@ public class SchedulesDate extends AppCompatActivity {
     private SchedularAdapter schedularAdapter;
 
     SharePreferences sharePreferences;
+    private String childName = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class SchedulesDate extends AppCompatActivity {
         String time = SharePreferences.getTime(this);
         String hospital = SharePreferences.getHospital(this);
         String question = SharePreferences.getQuestion(this);
+        childName = getIntent().getStringExtra("CHILD_NAME");
 
         recyclerView = (RecyclerView) findViewById(R.id.sched);
 
@@ -55,12 +59,19 @@ public class SchedulesDate extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
         try{
-            ArrayList<scheduleinfo> a = SharePreferences.getReminderArrayList(getApplicationContext());
-            scheduledetails.addAll(a);
+            ArrayList<scheduleinfo> list = SharePreferences.getReminderArrayList(getApplicationContext());
+            for (scheduleinfo ele: list
+                 ) {
+                if(ele.childName != null){
+                    if(ele.childName.equals(childName)){
+                        scheduledetails.add(ele);
+                    }
+                }
+            }
             schedularAdapter.notifyDataSetChanged();
 
         } catch (Exception e){
-
+            Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
         }
         //prepareSchedulelists();
 

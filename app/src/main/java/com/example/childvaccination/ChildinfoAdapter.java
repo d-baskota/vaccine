@@ -75,6 +75,7 @@ public class ChildinfoAdapter extends RecyclerView.Adapter<ChildinfoAdapter.MyVi
             @Override
             public void onClick(View view) {
                 Intent scheduleIntent = new Intent(context, ScheduleActivity.class);
+                scheduleIntent.putExtra("CHILD_NAME", holder.name.getText().toString());
                 ((Activity) context).startActivity(scheduleIntent);
             }
         });

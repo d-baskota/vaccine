@@ -5,13 +5,14 @@ import android.os.Parcelable;
 import android.widget.TextView;
 
 public class scheduleinfo implements Parcelable {
-    public String reminderdate, remindertime, reminderhospital, questionsford;
+    public String reminderdate, remindertime, reminderhospital, questionsford, childName;
 
-        public scheduleinfo(String reminderdate, String remindertime, String reminderhospital, String questionsford){
+        public scheduleinfo(String reminderdate, String remindertime, String reminderhospital, String questionsford, String childName){
             this.reminderdate = reminderdate;
             this.remindertime = remindertime;
             this.reminderhospital = reminderhospital;
             this.questionsford = questionsford;
+            this.childName = childName;
         }
 
     protected scheduleinfo(Parcel in) {
@@ -19,6 +20,7 @@ public class scheduleinfo implements Parcelable {
         remindertime = in.readString();
         reminderhospital = in.readString();
         questionsford = in.readString();
+        childName = in.readString();
     }
 
     public static final Creator<scheduleinfo> CREATOR = new Creator<scheduleinfo>() {
@@ -60,6 +62,7 @@ public class scheduleinfo implements Parcelable {
         dest.writeString(remindertime);
         dest.writeString(reminderhospital);
         dest.writeString(questionsford);
+        dest.writeString(childName);
     }
 
 }

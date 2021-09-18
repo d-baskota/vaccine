@@ -16,12 +16,13 @@ public class ScheduleActivity extends AppCompatActivity {
 
     private Button schedule;
     private ImageButton rem, rem2, rem3, rem4, rem5, rem6, rem7;
-
+    private String childName = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
         getSupportActionBar().hide();
+        childName = getIntent().getStringExtra("CHILD_NAME");
 
         schedule = findViewById(R.id.viewSchedule);
         rem = findViewById(R.id.reminder);
@@ -36,6 +37,7 @@ public class ScheduleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent scheduleIntent = new Intent(ScheduleActivity.this, SchedulesDate.class);
+                scheduleIntent.putExtra("CHILD_NAME", childName);
                 startActivity(scheduleIntent);
             }
         }
@@ -60,6 +62,7 @@ public class ScheduleActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent scheduleIntent = new Intent(ScheduleActivity.this, ReminderForm.class);
+            scheduleIntent.putExtra("CHILD_NAME", childName);
             startActivityForResult(scheduleIntent, 0);
         }
     };

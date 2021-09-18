@@ -41,12 +41,15 @@ public class ReminderForm extends AppCompatActivity {
     private Calendar calendar;
     private TimePickerDialog timepicker;
     SharedPreferences sharedPreferences;
+    private String childName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminder_form);
         getSupportActionBar().hide();
+        childName = getIntent().getStringExtra("CHILD_NAME");
+
 
         remView = (TextView) findViewById(R.id.remView);
         setreminder = (Button) findViewById(R.id.setReminder);
@@ -129,7 +132,7 @@ public class ReminderForm extends AppCompatActivity {
                 //remView.setText("\n Date :\t" + remdate.getText().toString() + "\nTime :\t " + remtime.getText().toString() + "\n Hospital :\t " + hospitalname.getText().toString() + "\n Question for Doctor :\t " + question.getText().toString());
                 SharePreferences.setUserdata(getApplicationContext(), remdate.getText().toString(), remtime.getText().toString(), hospitalname.getText().toString(), question.getText().toString());
 
-                scheduleinfo sinfo = new scheduleinfo(remdate.getText().toString(), remtime.getText().toString(), hospitalname.getText().toString(), question.getText().toString());
+                scheduleinfo sinfo = new scheduleinfo(remdate.getText().toString(), remtime.getText().toString(), hospitalname.getText().toString(), question.getText().toString(), childName);
                 reminderList.add(sinfo);
                 Intent intent = new Intent();
                 intent.putExtra("sdata", sinfo);
