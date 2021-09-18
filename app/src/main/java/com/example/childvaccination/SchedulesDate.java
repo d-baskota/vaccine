@@ -39,7 +39,7 @@ public class SchedulesDate extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.sched);
 
-        schedularAdapter = new SchedularAdapter(scheduledetails);
+        schedularAdapter = new SchedularAdapter(SchedulesDate.this, scheduledetails);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
 

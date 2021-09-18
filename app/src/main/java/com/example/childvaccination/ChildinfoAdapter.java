@@ -26,6 +26,7 @@ public class ChildinfoAdapter extends RecyclerView.Adapter<ChildinfoAdapter.MyVi
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView name, dob, gender, delete;
         private Button btnDelete;
+
         public MyViewHolder(View view) {
             super(view);
 
@@ -60,7 +61,12 @@ public class ChildinfoAdapter extends RecyclerView.Adapter<ChildinfoAdapter.MyVi
             @Override
             public void onClick(View view) {
                 SharePreferences.removeArrayList(context, position);
-                details = SharePreferences.getArrayList(context);
+                ArrayList<Childinfo> childList = SharePreferences.getArrayList(context);
+                if (childList == null) {
+                    childList = new ArrayList<>();
+                }
+                details.clear();
+                details.addAll(childList);
                 notifyDataSetChanged();
             }
         });
@@ -68,8 +74,8 @@ public class ChildinfoAdapter extends RecyclerView.Adapter<ChildinfoAdapter.MyVi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent scheduleIntent = new Intent(context,ScheduleActivity.class);
-                ((Activity)context).startActivity(scheduleIntent);
+                Intent scheduleIntent = new Intent(context, ScheduleActivity.class);
+                ((Activity) context).startActivity(scheduleIntent);
             }
         });
     }

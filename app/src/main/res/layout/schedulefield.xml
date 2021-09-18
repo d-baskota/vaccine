@@ -52,16 +52,26 @@
         android:textStyle="italic"
         />
 
-    <TextView
-        android:layout_below="@id/Reminderhospital"
-        android:id="@+id/Questionsford"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="18sp"
-        android:textColor="@color/cardview_shadow_start_color"
-        android:textStyle="italic"
-        />
+        <TextView
+            android:id="@+id/Questionsford"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Reminderhospital"
+            android:gravity="center"
+            android:textColor="@color/cardview_shadow_start_color"
+            android:textSize="18sp"
+            android:textStyle="italic" />
+
+
+        <Button
+            android:id="@+id/delete_reminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:layout_below="@+id/Questionsford"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            />
 
     </RelativeLayout>
 

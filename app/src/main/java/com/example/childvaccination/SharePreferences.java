@@ -36,6 +36,7 @@ public class SharePreferences {
         editor.apply();
     }
 
+
     public static void setReminderArrayList(Context context, ArrayList<scheduleinfo> detail){
         SharedPreferences.Editor editor = sharePrefs(context).edit();
         Gson gson = new Gson();
@@ -65,6 +66,13 @@ public class SharePreferences {
         arrayList.remove(position);
         setArrayList(context, arrayList);
         return getArrayList(context);
+    }
+
+    public static ArrayList<scheduleinfo> removeReminderArrayList(Context context, int position){
+        ArrayList<scheduleinfo> arrayList =  getReminderArrayList(context);
+        arrayList.remove(position);
+        setReminderArrayList(context, arrayList);
+        return getReminderArrayList(context);
     }
 
         public static String getName(Context context){
