@@ -110,10 +110,24 @@ public class ChildDetails extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
      //   Log.i(TAG, "onActivityResult: "+requestCode +"  "+resultCode);
         if (requestCode == 0 && resultCode == Activity.RESULT_OK){
-            Childinfo info = data.getParcelableExtra("data");
-            details.add(info);
+            Boolean shouldAddChild = true;
+            ArrayList<Childinfo> a = SharePreferences.getArrayList(getApplicationContext());
 
-            SharePreferences.setArrayList(getApplicationContext(), details);
+            Childinfo info = data.getParcelableExtra("data");
+            if(a != null){
+                for (Childinfo ele:a
+                ) {
+                    if(ele.getName().equals(info.getName())){
+                        shouldAddChild = false;
+                        Toast.makeText(this, "Child with provided name already exists.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            if(shouldAddChild){
+                details.add(info);
+                SharePreferences.setArrayList(getApplicationContext(), details);
+            }
             recyclerView.getAdapter().notifyDataSetChanged();
         }
     }

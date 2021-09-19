@@ -11,6 +11,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
@@ -27,6 +28,25 @@ public class SharePreferences {
         editor.putString("gender", gender);
         editor.apply();
     }
+
+    public static void setCompoundButtonPref(Context context,ArrayList<CompoundButtonClass> checkList) {
+        SharedPreferences.Editor editor = sharePrefs(context).edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(checkList);
+        editor.putString("CHECKLISTARRAY", json);
+        editor.apply();
+    }
+
+
+    public static ArrayList<CompoundButtonClass> getCompountButtonPref(Context context){
+        SharedPreferences prefs = sharePrefs(context);
+        Gson gson = new Gson();
+        String json = prefs.getString("CHECKLISTARRAY", null);
+        Type type = new TypeToken<ArrayList<CompoundButtonClass>>() {}.getType();
+        return gson.fromJson(json, type);
+    }
+
+
 
     public static void setArrayList(Context context, ArrayList<Childinfo> detail){
         SharedPreferences.Editor editor = sharePrefs(context).edit();
